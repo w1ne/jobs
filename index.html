@@ -343,11 +343,11 @@
 <body>
 
   <div id="sidebar">
-    <div>
-      <h1>AI Exposure: European Job Market</h1>
-      <div class="subtitle" id="occCount">Calculating...</div>
-      <div class="subtitle">Data: <a href="https://ec.europa.eu/esco/">ESCO</a> + <a
-          href="https://ec.europa.eu/eurostat/">Eurostat</a> &middot; scored by Gemini 2.0</div>
+    <div class="header-section">
+      <h1>AI Exposure of the European Job Market</h1>
+      <div class="subtitle" id="occCount">...</div>
+      <div class="subtitle">Data from <a href="https://ec.europa.eu/esco/">ESCO</a>, scored by Gemini Flash<br><a
+          href="https://github.com/w1ne/jobs">GitHub</a></div>
     </div>
 
     <div class="view-toggle">
@@ -355,42 +355,54 @@
       <button onclick="setView('scatter')">Exposure vs Outlook</button>
     </div>
 
-    <div class="search-container">
-      <input type="text" id="search" placeholder="Search occupations..." oninput="handleSearch(this.value)">
+    <div class="stat-group">
+      <div class="stat-label-caps">TOTAL JOBS</div>
+      <div class="stat-big" id="statTotalJobs">—</div>
     </div>
 
-    <div class="stat-section">
-      <h3>Weighted Avg. Exposure</h3>
+    <div class="stat-group">
+      <div class="stat-label-caps">WEIGHTED AVG. EXPOSURE</div>
       <div class="stat-big" id="statAvgExposure">—</div>
+      <div class="stat-sub">job-weighted, 0-10 scale</div>
     </div>
 
     <div class="stat-section">
-      <h3>Jobs by Exposure</h3>
+      <h3>JOBS BY EXPOSURE (WEIGHTED BY EMPLOYMENT)</h3>
       <div class="histogram" id="histogram"></div>
-      <div class="hist-labels"
-        style="display:flex;justify-content:space-between;font-size:9px;color:var(--fg2);margin-top:-2px;">
-        <span>0</span><span>10</span>
+      <div class="hist-labels">
+        <span>0</span><span>5</span><span>10</span>
       </div>
     </div>
 
     <div class="stat-section">
-      <h3>Breakdown</h3>
+      <h3>BREAKDOWN</h3>
       <div class="tier-bar" id="tierBar"></div>
     </div>
 
     <div class="stat-section">
-      <h3>By Education</h3>
-      <div class="hbar-chart" id="eduChart"></div>
-    </div>
-
-    <div class="stat-section">
-      <h3>By Median Pay</h3>
+      <h3>EXPOSURE BY PAY</h3>
       <div class="hbar-chart" id="payChart"></div>
     </div>
 
-    <div id="prompt-btn"
-      onclick="alert('The scoring prompt follows Karpathy\'s methodology adapted for ESCO-08 hierarchy and European labor market context.')">
-      View Evaluation Methodology
+    <div class="stat-section">
+      <h3>EXPOSURE BY EDUCATION</h3>
+      <div class="hbar-chart" id="eduChart"></div>
+    </div>
+
+    <div class="stat-group">
+      <div class="stat-label-caps">WAGES EXPOSED</div>
+      <div class="stat-big" id="statWagesExposed">—</div>
+      <div class="stat-sub">annual wages in high-exposure jobs (7+)</div>
+    </div>
+
+    <div class="legend-bottom">
+      <span>Low</span>
+      <div class="legend-gradient"></div>
+      <span>High</span>
+    </div>
+
+    <div class="search-container" style="margin-top: 10px;">
+      <input type="text" id="search" placeholder="Search occupations..." oninput="handleSearch(this.value)">
     </div>
   </div>
 
@@ -608,23 +620,52 @@
     // ... Additional scatter views and stats logic ...
     function renderStats() {
       const totalJobs = allData.reduce((s, d) => s + (d.jobs || 0), 0);
-      document.getElementById("occCount").textContent = `${allData.length} occupations \u00b7 ${(totalJobs / 1e6).toFixed(0)}M jobs (EU)`;
+      document.getElementById("occCount").textContent = `${allData.length} occupations - color = AI exposure`;
+      document.getElementById("statTotalJobs").textContent = (totalJobs / 1e6).toFixed(0) + "M";
 
-      let wSum = 0, wCount = 0;
+      let wSum = 0, wCount = 0, highExpWages = 0;
       const hist = new Array(11).fill(0);
       allData.forEach(d => {
         if (d.exposure != null && d.jobs) {
           wSum += d.exposure * d.jobs; wCount += d.jobs;
           hist[d.exposure] += d.jobs;
+          if (d.exposure >= 7) highExpWages += (d.jobs * d.pay);
         }
       });
       const weightedAvg = wCount > 0 ? wSum / wCount : 0;
-      document.getElementById("statAvgExposure").innerHTML = `<span style="color:${exposureColorCSS(weightedAvg, 1)}">${weightedAvg.toFixed(1)}</span>`;
+      document.getElementById("statAvgExposure").textContent = weightedAvg.toFixed(1);
+      document.getElementById("statWagesExposed").textContent = "\u20ac" + (highExpWages / 1e12).toFixed(1) + "T";
 
       const maxH = Math.max(...hist);
       document.getElementById("histogram").innerHTML = hist.map((c, i) => {
         const h = (c / maxH * 100);
-        return `<div class="bar" style="height:${h}%;background:${exposureColorCSS(i, 0.7)}"></div>`;
+        return `<div class="bar" style="height:${h}%;background:${exposureColorCSS(i, 1.0)}"></div>`;
+      }).join("");
+
+      const tiers = [
+        { label: "Minimal (0-1)", range: [0, 1], color: exposureColorCSS(0.5, 1) },
+        { label: "Low (2-3)", range: [2, 3], color: exposureColorCSS(2.5, 1) },
+        { label: "Moderate (4-5)", range: [4, 5], color: exposureColorCSS(4.5, 1) },
+        { label: "High (6-7)", range: [6, 7], color: exposureColorCSS(6.5, 1) },
+        { label: "Very high (8-10)", range: [8, 10], color: exposureColorCSS(9, 1) }
+      ];
+      document.getElementById("tierBar").innerHTML = tiers.map(t => {
+        const jobs = allData.filter(d => d.exposure >= t.range[0] && d.exposure <= t.range[1]).reduce((s, d) => s + d.jobs, 0);
+        const pct = Math.round((jobs / totalJobs) * 100);
+        return `<div class="tier-row"><div class="tier-color" style="background:${t.color}"></div><div class="tier-name">${t.label}</div><div class="tier-jobs" style="flex:1;text-align:right;">${(jobs / 1e6).toFixed(1)}M</div><div class="tier-pct">${pct}%</div></div>`;
+      }).join("");
+
+      const payBands = [
+        { label: "<\u20ac35K", min: 0, max: 35000 },
+        { label: "\u20ac35-55K", min: 35000, max: 55000 },
+        { label: "\u20ac55-75K", min: 55000, max: 75000 },
+        { label: "\u20ac75K+", min: 75000, max: Infinity }
+      ];
+      document.getElementById("payChart").innerHTML = payBands.map(b => {
+        let s = 0, c = 0;
+        allData.forEach(d => { if (d.pay >= b.min && d.pay < b.max) { s += d.exposure * d.jobs; c += d.jobs; } });
+        const avg = c > 0 ? s / c : 0;
+        return `<div class="hbar-row"><span class="hbar-label">${b.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
       }).join("");
 
       const eduGroups = [
@@ -636,20 +677,7 @@
         let s = 0, c = 0;
         allData.forEach(d => { if (g.m.includes(d.education)) { s += d.exposure * d.jobs; c += d.jobs; } });
         const avg = c > 0 ? s / c : 0;
-        return `<div class="hbar-row"><span class="hbar-label">${g.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 0.8)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
-      }).join("");
-
-      const payBands = [
-        { label: "< \u20ac35K", min: 0, max: 35000 },
-        { label: "\u20ac35-55K", min: 35000, max: 55000 },
-        { label: "\u20ac55-75K", min: 55000, max: 75000 },
-        { label: "\u20ac75K+", min: 75000, max: Infinity }
-      ];
-      document.getElementById("payChart").innerHTML = payBands.map(b => {
-        let s = 0, c = 0;
-        allData.forEach(d => { if (d.pay >= b.min && d.pay < b.max) { s += d.exposure * d.jobs; c += d.jobs; } });
-        const avg = c > 0 ? s / c : 0;
-        return `<div class="hbar-row"><span class="hbar-label">${b.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 0.8)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
+        return `<div class="hbar-row"><span class="hbar-label">${g.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
       }).join("");
     }
 
