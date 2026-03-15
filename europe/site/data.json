@@ -1,92 +1,146 @@
 [
     {
-        "title": "Software Developer",
-        "slug": "software-developer",
-        "category": "Professionals",
-        "pay": 58200,
-        "jobs": 2450000,
-        "exposure": 8,
-        "exposure_rationale": "Large portions of coding, testing, and documentation are highly susceptible to LLM-based automation and augmentation."
-    },
-    {
-        "title": "General Medical Practitioner",
-        "slug": "medical-practitioner",
-        "category": "Professionals",
-        "pay": 82000,
-        "jobs": 1850000,
-        "exposure": 4,
-        "exposure_rationale": "AI excels at diagnostic assistance and administrative tasks, but core patient interaction and physical examination remain human-centric."
-    },
-    {
-        "title": "Bricklayer",
-        "slug": "bricklayer",
-        "category": "Craft and Related Trades",
-        "pay": 31500,
-        "jobs": 3200000,
-        "exposure": 1,
-        "exposure_rationale": "High physical dexterity requirements in unstructured, variable outdoor environments provide a strong barrier to automation."
-    },
-    {
-        "title": "Accountant",
-        "slug": "accountant",
-        "category": "Professionals",
-        "pay": 45000,
-        "jobs": 4100000,
-        "exposure": 7,
-        "exposure_rationale": "Routine data reconciliation and reporting are being rapidly automated, though high-level tax strategy and human oversight persist."
-    },
-    {
-        "title": "Shop Sales Assistant",
-        "slug": "shop-sales",
-        "category": "Service and Sales",
-        "pay": 21500,
-        "jobs": 12800000,
-        "exposure": 4,
-        "exposure_rationale": "Affected by e-commerce and self-checkout, but localized physical assistance and theft prevention still require humans."
-    },
-    {
-        "title": "Heavy Truck Driver",
-        "slug": "truck-driver",
-        "category": "Plant and Machine Operators",
-        "pay": 34000,
-        "jobs": 5800000,
+        "title": "Corporate Managers & Directors",
+        "slug": "managers",
+        "category": "ISCO 1: Managers",
+        "pay": 62400,
+        "jobs": 11200000,
         "exposure": 6,
-        "exposure_rationale": "Long-haul highway driving is a primary target for autonomous systems, though 'last mile' and docking remain complex."
+        "exposure_rationale": "High-level strategic decision making and leadership are resilient, but administrative and reporting tasks are increasingly automated."
     },
     {
-        "title": "Data Entry Clerk",
-        "slug": "data-entry",
-        "category": "Clerical Support",
-        "pay": 24000,
-        "jobs": 950000,
-        "exposure": 10,
-        "exposure_rationale": "Purely digital information processing with low variability; OCR and LLMs can already perform these tasks with high accuracy."
+        "title": "Software & System Developers",
+        "slug": "developers",
+        "category": "ISCO 2: Professionals",
+        "pay": 58000,
+        "jobs": 5200000,
+        "exposure": 8,
+        "exposure_rationale": "Core digital work product and quantitative thinking are highly susceptible to LLM-driven productivity gains and automation."
     },
     {
-        "title": "Primary School Teacher",
-        "slug": "primary-teacher",
-        "category": "Professionals",
-        "pay": 39500,
+        "title": "Doctors & Health Professionals",
+        "slug": "doctors",
+        "category": "ISCO 2: Professionals",
+        "pay": 85000,
         "jobs": 4800000,
+        "exposure": 4,
+        "exposure_rationale": "AI supports diagnostics and analysis, but patient care, surgery, and human judgment provide a significant barrier."
+    },
+    {
+        "title": "Teachers & Educators",
+        "slug": "teachers",
+        "category": "ISCO 2: Professionals",
+        "pay": 42000,
+        "jobs": 8500000,
         "exposure": 3,
-        "exposure_rationale": "Social-emotional learning and classroom management are deeply human; AI serves as a curriculum aid rather than a replacement."
+        "exposure_rationale": "Deeply human-centric social and emotional intelligence requirements make full automation unlikely; AI remains an assistant."
     },
     {
-        "title": "Kitchen Assistant",
-        "slug": "kitchen-assistant",
-        "category": "Elementary Occupations",
-        "pay": 19800,
-        "jobs": 6200000,
-        "exposure": 2,
-        "exposure_rationale": "Manual prep work in cramped, high-speed, variable environments is difficult for robotics to replicate cost-effectively today."
+        "title": "Business & Admin Professionals",
+        "slug": "admin-pros",
+        "category": "ISCO 2: Professionals",
+        "pay": 48000,
+        "jobs": 16900000,
+        "exposure": 7,
+        "exposure_rationale": "Information-heavy roles in accounting, law, and HR are facing major restructuring due to generative AI capabilities."
     },
     {
-        "title": "Financial Analyst",
-        "slug": "financial-analyst",
-        "category": "Professionals",
-        "pay": 65000,
-        "jobs": 720000,
+        "title": "Science & Eng. Technicians",
+        "slug": "technicians",
+        "category": "ISCO 3: Technicians",
+        "pay": 38000,
+        "jobs": 28900000,
+        "exposure": 5,
+        "exposure_rationale": "Semi-skilled technical work involves a mix of physical operation and data processing that AI can partially manage."
+    },
+    {
+        "title": "Clerical Support Workers",
+        "slug": "clerks",
+        "category": "ISCO 4: Clerks",
+        "pay": 29000,
+        "jobs": 19500000,
         "exposure": 9,
-        "exposure_rationale": "Deeply quantitative digital work product; generative AI is exceptionally good at summarizing reports and processing financial data."
+        "exposure_rationale": "Routine digital information processing is the 'low hanging fruit' for current AI technologies; high risk of displacement."
+    },
+    {
+        "title": "Shop & Sales Workers",
+        "slug": "sales",
+        "category": "ISCO 5: Service & Sales",
+        "pay": 22000,
+        "jobs": 18400000,
+        "exposure": 4,
+        "exposure_rationale": "Hybrid of physical retail assistance and digital inventory/checkout tasks. Human presence is still valued for sales."
+    },
+    {
+        "title": "Personal Care Workers",
+        "slug": "care-workers",
+        "category": "ISCO 5: Service & Sales",
+        "pay": 21000,
+        "jobs": 13700000,
+        "exposure": 2,
+        "exposure_rationale": "High degree of physical dexterity, empathy, and unpredictable human interaction requirements."
+    },
+    {
+        "title": "Skilled Agricultural & Forestry",
+        "slug": "farmers",
+        "category": "ISCO 6: Agriculture",
+        "pay": 20000,
+        "jobs": 3100000,
+        "exposure": 2,
+        "exposure_rationale": "Outdoor, variable environments and manual labor components make AI/Robotics integration slow and costly."
+    },
+    {
+        "title": "Building & Related Trades",
+        "slug": "construction",
+        "category": "ISCO 7: Craft",
+        "pay": 32000,
+        "jobs": 12400000,
+        "exposure": 1,
+        "exposure_rationale": "Complex physical labor in changing environments is extremely difficult for current robotics/AI systems."
+    },
+    {
+        "title": "Metal & Machinery Workers",
+        "slug": "metal-workers",
+        "category": "ISCO 7: Craft",
+        "pay": 35000,
+        "jobs": 10000000,
+        "exposure": 3,
+        "exposure_rationale": "AI/Robotics are common in manufacturing, but custom machine work and repair still require skilled human operators."
+    },
+    {
+        "title": "Drivers & Mobile Plant Ops",
+        "slug": "drivers",
+        "category": "ISCO 8: Operators",
+        "pay": 33000,
+        "jobs": 8600000,
+        "exposure": 6,
+        "exposure_rationale": "Highway driving is highly exposed to automation, though urban navigation and manual loading remain complex."
+    },
+    {
+        "title": "Stationary Plant & Machine Ops",
+        "slug": "factory-ops",
+        "category": "ISCO 8: Operators",
+        "pay": 31000,
+        "jobs": 7000000,
+        "exposure": 5,
+        "exposure_rationale": "Repetitive indoor machine operation is well-suited for traditional automation and AI optimization."
+    },
+    {
+        "title": "Cleaners & Helpers",
+        "slug": "cleaners",
+        "category": "ISCO 9: Elementary",
+        "pay": 19000,
+        "jobs": 10200000,
+        "exposure": 1,
+        "exposure_rationale": "Unstructured physical environments and low economic incentive for complex robotics provide high resistance."
+    },
+    {
+        "title": "Laborers in Mining & Manu.",
+        "slug": "laborers",
+        "category": "ISCO 9: Elementary",
+        "pay": 20000,
+        "jobs": 8000000,
+        "exposure": 3,
+        "exposure_rationale": "Manual labor in predictable settings is susceptible to physical automation/conveyor-belt robotics."
     }
 ]
