@@ -669,26 +669,36 @@
     function renderStats() {
       const totalJobs = allData.reduce((s, d) => s + (d.jobs || 0), 0);
       document.getElementById("occCount").textContent = `${allData.length} occupations - color = AI exposure`;
-      document.getElementById("statTotalJobs").textContent = (totalJobs / 1e6).toFixed(0) + "M";
+
+      const statTotalJobs = document.getElementById("statTotalJobs");
+      if (statTotalJobs) statTotalJobs.textContent = (totalJobs / 1e6).toFixed(0) + "M";
 
       let wSum = 0, wCount = 0, highExpWages = 0;
       const hist = new Array(11).fill(0);
       allData.forEach(d => {
         if (d.exposure != null && d.jobs) {
-          wSum += d.exposure * d.jobs; wCount += d.jobs;
+          wSum += d.exposure * d.jobs;
+          wCount += d.jobs;
           hist[d.exposure] += d.jobs;
           if (d.exposure >= 7) highExpWages += (d.jobs * d.pay);
         }
       });
+
       const weightedAvg = wCount > 0 ? wSum / wCount : 0;
-      document.getElementById("statAvgExposure").textContent = weightedAvg.toFixed(1);
-      document.getElementById("statWagesExposed").textContent = "\u20ac" + (highExpWages / 1e12).toFixed(1) + "T";
+      const statAvg = document.getElementById("statAvgExposure");
+      if (statAvg) statAvg.textContent = weightedAvg.toFixed(1);
+
+      const statWages = document.getElementById("statWagesExposed");
+      if (statWages) statWages.textContent = "\u20ac" + (highExpWages / 1e12).toFixed(1) + "T";
 
       const maxH = Math.max(...hist);
-      document.getElementById("histogram").innerHTML = hist.map((c, i) => {
-        const h = (c / maxH * 100);
-        return `<div class="bar" style="height:${h}%;background:${exposureColorCSS(i, 1.0)}"></div>`;
-      }).join("");
+      const histEl = document.getElementById("histogram");
+      if (histEl) {
+        histEl.innerHTML = hist.map((c, i) => {
+          const h = (c / maxH * 100);
+          return `<div class="bar" style="height:${h}%;background:${exposureColorCSS(i, 1.0)}"></div>`;
+        }).join("");
+      }
 
       const tiers = [
         { label: "Minimal (0-1)", range: [0, 1], color: exposureColorCSS(0.5, 1) },
@@ -697,11 +707,14 @@
         { label: "High (6-7)", range: [6, 7], color: exposureColorCSS(6.5, 1) },
         { label: "Very high (8-10)", range: [8, 10], color: exposureColorCSS(9, 1) }
       ];
-      document.getElementById("tierBar").innerHTML = tiers.map(t => {
-        const jobs = allData.filter(d => d.exposure >= t.range[0] && d.exposure <= t.range[1]).reduce((s, d) => s + d.jobs, 0);
-        const pct = Math.round((jobs / totalJobs) * 100);
-        return `<div class="tier-row"><div class="tier-color" style="background:${t.color}"></div><div class="tier-name">${t.label}</div><div class="tier-jobs" style="flex:1;text-align:right;">${(jobs / 1e6).toFixed(1)}M</div><div class="tier-pct">${pct}%</div></div>`;
-      }).join("");
+      const tierEl = document.getElementById("tierBar");
+      if (tierEl) {
+        tierEl.innerHTML = tiers.map(t => {
+          const jobs = allData.filter(d => d.exposure >= t.range[0] && d.exposure <= t.range[1]).reduce((s, d) => s + d.jobs, 0);
+          const pct = Math.round((jobs / totalJobs) * 100);
+          return `<div class="tier-row"><div class="tier-color" style="background:${t.color}"></div><div class="tier-name">${t.label}</div><div class="tier-jobs" style="flex:1;text-align:right;">${(jobs / 1e6).toFixed(1)}M</div><div class="tier-pct">${pct}%</div></div>`;
+        }).join("");
+      }
 
       const payBands = [
         { label: "<\u20ac35K", min: 0, max: 35000 },
@@ -709,24 +722,30 @@
         { label: "\u20ac55-75K", min: 55000, max: 75000 },
         { label: "\u20ac75K+", min: 75000, max: Infinity }
       ];
-      document.getElementById("payChart").innerHTML = payBands.map(b => {
-        let s = 0, c = 0;
-        allData.forEach(d => { if (d.pay >= b.min && d.pay < b.max) { s += d.exposure * d.jobs; c += d.jobs; } });
-        const avg = c > 0 ? s / c : 0;
-        return `<div class="hbar-row"><span class="hbar-label">${b.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
-      }).join("");
+      const payEl = document.getElementById("payChart");
+      if (payEl) {
+        payEl.innerHTML = payBands.map(b => {
+          let s = 0, c = 0;
+          allData.forEach(d => { if (d.pay >= b.min && d.pay < b.max) { s += d.exposure * d.jobs; c += d.jobs; } });
+          const avg = c > 0 ? s / c : 0;
+          return `<div class="hbar-row"><span class="hbar-label">${b.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
+        }).join("");
+      }
 
       const eduGroups = [
         { label: "HS / None", m: ["No formal educational credential", "High school diploma"] },
         { label: "Degree / Assoc", m: ["Associate's degree", "Bachelor's degree"] },
         { label: "Masters / Doc", m: ["Master's degree", "Doctoral or professional degree"] }
       ];
-      document.getElementById("eduChart").innerHTML = eduGroups.map(g => {
-        let s = 0, c = 0;
-        allData.forEach(d => { if (g.m.includes(d.education)) { s += d.exposure * d.jobs; c += d.jobs; } });
-        const avg = c > 0 ? s / c : 0;
-        return `<div class="hbar-row"><span class="hbar-label">${g.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
-      }).join("");
+      const eduEl = document.getElementById("eduChart");
+      if (eduEl) {
+        eduEl.innerHTML = eduGroups.map(g => {
+          let s = 0, c = 0;
+          allData.forEach(d => { if (g.m.includes(d.education)) { s += d.exposure * d.jobs; c += d.jobs; } });
+          const avg = c > 0 ? s / c : 0;
+          return `<div class="hbar-row"><span class="hbar-label">${g.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 1.0)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
+        }).join("");
+      }
     }
 
     function showTooltip(d, mx, my) {
