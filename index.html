@@ -787,7 +787,7 @@
     }
 
     window.addEventListener("resize", resize);
-    fetch("data.json").then(r => r.json()).then(d => { allData = d; resize(); });
+    fetch("data.json?t=" + Date.now()).then(r => r.json()).then(d => { allData = d; resize(); });
   </script>
 </body>
 
