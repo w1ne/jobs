@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Software Developer",
+        "slug": "software-developer",
+        "category": "Professionals",
+        "pay": 58200,
+        "jobs": 2450000,
+        "exposure": 8,
+        "exposure_rationale": "Large portions of coding, testing, and documentation are highly susceptible to LLM-based automation and augmentation."
+    },
+    {
+        "title": "General Medical Practitioner",
+        "slug": "medical-practitioner",
+        "category": "Professionals",
+        "pay": 82000,
+        "jobs": 1850000,
+        "exposure": 4,
+        "exposure_rationale": "AI excels at diagnostic assistance and administrative tasks, but core patient interaction and physical examination remain human-centric."
+    },
+    {
+        "title": "Bricklayer",
+        "slug": "bricklayer",
+        "category": "Craft and Related Trades",
+        "pay": 31500,
+        "jobs": 3200000,
+        "exposure": 1,
+        "exposure_rationale": "High physical dexterity requirements in unstructured, variable outdoor environments provide a strong barrier to automation."
+    },
+    {
+        "title": "Accountant",
+        "slug": "accountant",
+        "category": "Professionals",
+        "pay": 45000,
+        "jobs": 4100000,
+        "exposure": 7,
+        "exposure_rationale": "Routine data reconciliation and reporting are being rapidly automated, though high-level tax strategy and human oversight persist."
+    },
+    {
+        "title": "Shop Sales Assistant",
+        "slug": "shop-sales",
+        "category": "Service and Sales",
+        "pay": 21500,
+        "jobs": 12800000,
+        "exposure": 4,
+        "exposure_rationale": "Affected by e-commerce and self-checkout, but localized physical assistance and theft prevention still require humans."
+    },
+    {
+        "title": "Heavy Truck Driver",
+        "slug": "truck-driver",
+        "category": "Plant and Machine Operators",
+        "pay": 34000,
+        "jobs": 5800000,
+        "exposure": 6,
+        "exposure_rationale": "Long-haul highway driving is a primary target for autonomous systems, though 'last mile' and docking remain complex."
+    },
+    {
+        "title": "Data Entry Clerk",
+        "slug": "data-entry",
+        "category": "Clerical Support",
+        "pay": 24000,
+        "jobs": 950000,
+        "exposure": 10,
+        "exposure_rationale": "Purely digital information processing with low variability; OCR and LLMs can already perform these tasks with high accuracy."
+    },
+    {
+        "title": "Primary School Teacher",
+        "slug": "primary-teacher",
+        "category": "Professionals",
+        "pay": 39500,
+        "jobs": 4800000,
+        "exposure": 3,
+        "exposure_rationale": "Social-emotional learning and classroom management are deeply human; AI serves as a curriculum aid rather than a replacement."
+    },
+    {
+        "title": "Kitchen Assistant",
+        "slug": "kitchen-assistant",
+        "category": "Elementary Occupations",
+        "pay": 19800,
+        "jobs": 6200000,
+        "exposure": 2,
+        "exposure_rationale": "Manual prep work in cramped, high-speed, variable environments is difficult for robotics to replicate cost-effectively today."
+    },
+    {
+        "title": "Financial Analyst",
+        "slug": "financial-analyst",
+        "category": "Professionals",
+        "pay": 65000,
+        "jobs": 720000,
+        "exposure": 9,
+        "exposure_rationale": "Deeply quantitative digital work product; generative AI is exceptionally good at summarizing reports and processing financial data."
+    }
+]
