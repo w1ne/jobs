@@ -369,7 +369,8 @@
       <div class="histogram" id="histogram"></div>
       <div class="hist-labels"
         style="display:flex;justify-content:space-between;font-size:9px;color:var(--fg2);margin-top:-2px;">
-        <span>0</span><span>10</span></div>
+        <span>0</span><span>10</span>
+      </div>
     </div>
 
     <div class="stat-section">
@@ -636,6 +637,19 @@
         allData.forEach(d => { if (g.m.includes(d.education)) { s += d.exposure * d.jobs; c += d.jobs; } });
         const avg = c > 0 ? s / c : 0;
         return `<div class="hbar-row"><span class="hbar-label">${g.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 0.8)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
+      }).join("");
+
+      const payBands = [
+        { label: "< \u20ac35K", min: 0, max: 35000 },
+        { label: "\u20ac35-55K", min: 35000, max: 55000 },
+        { label: "\u20ac55-75K", min: 55000, max: 75000 },
+        { label: "\u20ac75K+", min: 75000, max: Infinity }
+      ];
+      document.getElementById("payChart").innerHTML = payBands.map(b => {
+        let s = 0, c = 0;
+        allData.forEach(d => { if (d.pay >= b.min && d.pay < b.max) { s += d.exposure * d.jobs; c += d.jobs; } });
+        const avg = c > 0 ? s / c : 0;
+        return `<div class="hbar-row"><span class="hbar-label">${b.label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${avg * 10}%;background:${exposureColorCSS(avg, 0.8)}"></div></div><span class="hbar-val">${avg.toFixed(1)}</span></div>`;
       }).join("");
     }
 
