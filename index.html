@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Exposure of the European Job Market</title>
+<style>
+/* CSS adapted from Karpathy's jobs visualization */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888894;
+  --sidebar-w: 240px;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+}
+#sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg2);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 18px;
+  z-index: 10;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#sidebar h1 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+.subtitle { font-size: 11px; color: var(--fg2); margin-top: 4px; line-height: 1.4; }
+.stat-section { display: flex; flex-direction: column; gap: 6px; }
+.stat-section h3 { font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--fg2); }
+.stat-big { font-size: 28px; font-weight: 700; line-height: 1; }
+.stat-label { font-size: 11px; color: var(--fg2); }
+canvas#canvas { display: block; position: fixed; top: 0; left: var(--sidebar-w); }
+#tooltip {
+  position: fixed; pointer-events: none; background: var(--bg2); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 12px 16px; font-size: 13px; max-width: 340px; opacity: 0; transition: opacity 0.1s; z-index: 20;
+}
+#tooltip.visible { opacity: 1; }
+.tt-title { font-weight: 600; margin-bottom: 6px; color: #fff; }
+.tt-stats { display: grid; grid-template-columns: auto auto; gap: 2px 12px; font-size: 12px; }
+.tt-stats .label { color: var(--fg2); }
+.tt-stats .value { color: var(--fg); text-align: right; }
+.tt-rationale { font-size: 11px; color: var(--fg2); margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px; }
+</style>
+</head>
+<body>
+<div id="sidebar">
+  <div>
+    <h1>AI Exposure of the European Job Market</h1>
+    <div class="subtitle">ESCO-08 &middot; color = AI exposure<br>Data from <a href="https://ec.europa.eu/esco/portal/home">ESCO</a> + <a href="https://ec.europa.eu/eurostat/">Eurostat</a><br>Scored by Gemini 2.0</div>
+  </div>
+  <div class="stat-section">
+    <h3>Total EU jobs</h3>
+    <div class="stat-big" id="statTotalJobs">—</div>
+  </div>
+  <div class="stat-section">
+    <h3>Avg. AI Exposure</h3>
+    <div class="stat-big" id="statAvgExposure">—</div>
+    <div class="stat-label">job-weighted, 0–10 scale</div>
+  </div>
+  <div class="stat-section">
+    <h3>Breakdown</h3>
+    <div id="tierBar" style="font-size:11px; color:var(--fg2);"></div>
+  </div>
+</div>
+<canvas id="canvas"></canvas>
+<div id="tooltip">
+  <div class="tt-title"></div>
+  <div class="tt-exposure"></div>
+  <div class="tt-stats"></div>
+  <div class="tt-rationale"></div>
+</div>
+
+<script>
+// Logic highly similar to karpathy/jobs/site/index.html
+function exposureColor(score) {
+  const t = Math.max(0, Math.min(10, score)) / 10;
+  let r, g, b;
+  if (t < 0.5) {
+    const s = t / 0.5;
+    r = Math.round(50 + s * 180); g = Math.round(160 - s * 10); b = Math.round(50 - s * 20);
+  } else {
+    const s = (t - 0.5) / 0.5;
+    r = Math.round(230 + s * 25); g = Math.round(150 - s * 110); b = Math.round(30 - s * 10);
+  }
+  return `rgba(${r},${g},${b},0.6)`;
+}
+
+// ... Squarify logic, Canvas setup ... 
+// (For demo brevity, I'll use a simple grid if squarify isn't fully pasted, 
+// but I'll paste the core squarify to keep the look)
+
+function squarify(items, x, y, w, h) {
+  if (!items.length) return [];
+  const total = items.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return [];
+  const results = [];
+  let remaining = [...items], cx = x, cy = y, cw = w, ch = h;
+  while (remaining.length > 0) {
+    const side = cw >= ch ? ch : cw;
+    let row = [remaining[0]], rowSum = remaining[0].value;
+    for (let i = 1; i < remaining.length; i++) {
+      const nextSum = rowSum + remaining[i].value;
+      if (Math.max(ch/cw, cw/ch) > Math.max(ch/(cw*(nextSum/total)), (cw*(nextSum/total))/ch)) { // simplification
+         row.push(remaining[i]); rowSum = nextSum;
+      } else break;
+    }
+    const rowThickness = (cw >= ch) ? cw * (rowSum / remaining.reduce((s,r)=>s+r.value,0)) : ch * (rowSum / remaining.reduce((s,r)=>s+r.value,0));
+    let offset = 0;
+    for (const item of row) {
+      const itemLen = (cw >= ch ? ch : cw) * (item.value / rowSum);
+      if (cw >= ch) results.push({...item, rx: cx, ry: cy+offset, rw: rowThickness, rh: itemLen});
+      else results.push({...item, rx: cx+offset, ry: cy, rw: itemLen, rh: rowThickness});
+      offset += itemLen;
+    }
+    if (cw >= ch) { cx += rowThickness; cw -= rowThickness; }
+    else { cy += rowThickness; ch -= rowThickness; }
+    remaining = remaining.slice(row.length);
+  }
+  return results;
+}
+
+let data = [], rects = [], hovered = null;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+
+async function init() {
+  const resp = await fetch('data.json');
+  data = await resp.json();
+  data.sort((a,b) => (b.jobs||0) - (a.jobs||0));
+  
+  const totalJobs = data.reduce((s,d) => s + (d.jobs||0), 0);
+  document.getElementById("statTotalJobs").textContent = (totalJobs/1e6).toFixed(1) + "M";
+  
+  const avg = data.reduce((s,d) => s + (d.exposure||0)*(d.jobs||0), 0) / totalJobs;
+  document.getElementById("statAvgExposure").textContent = avg.toFixed(1);
+
+  resize();
+  window.addEventListener('resize', resize);
+  canvas.addEventListener('mousemove', e => {
+    const sidebarW = 240;
+    const mx = e.clientX - sidebarW, my = e.clientY;
+    hovered = rects.find(r => mx >= r.rx && mx < r.rx+r.rw && my >= r.ry && my < r.ry+r.rh);
+    draw();
+    if (hovered) showTooltip(hovered, e.clientX, e.clientY);
+    else hideTooltip();
+  });
+}
+
+function resize() {
+  const w = window.innerWidth - 240, h = window.innerHeight;
+  canvas.width = w * devicePixelRatio; canvas.height = h * devicePixelRatio;
+  canvas.style.width = w + "px"; canvas.style.height = h + "px";
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  rects = squarify(data.map(d => ({...d, value: d.jobs||1})), 10, 10, w-20, h-20);
+  draw();
+}
+
+function draw() {
+  ctx.fillStyle = "#0a0a0f"; ctx.fillRect(0,0,canvas.width,canvas.height);
+  for (const r of rects) {
+    ctx.fillStyle = exposureColor(r.exposure);
+    ctx.fillRect(r.rx+1, r.ry+1, r.rw-2, r.rh-2);
+    if (r === hovered) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.strokeRect(r.rx+1, r.ry+1, r.rw-2, r.rh-2); }
+    if (r.rw > 40 && r.rh > 20) {
+      ctx.fillStyle = "#fff"; ctx.font = "10px sans-serif"; ctx.fillText(r.title.slice(0, Math.floor(r.rw/6)), r.rx+5, r.ry+15);
+    }
+  }
+}
+
+function showTooltip(d, x, y) {
+  const tt = document.getElementById("tooltip");
+  tt.querySelector(".tt-title").textContent = d.title;
+  tt.querySelector(".tt-exposure").innerHTML = `<span style="color:${exposureColor(d.exposure).replace('0.6','1')}; font-weight:bold;">AI Exposure: ${d.exposure}/10</span>`;
+  tt.querySelector(".tt-stats").innerHTML = `
+    <span class="label">Median pay (EU)</span><span class="value">€${(d.pay||0).toLocaleString()}</span>
+    <span class="label">Est. Jobs</span><span class="value">${(d.jobs||0).toLocaleString()}</span>
+  `;
+  tt.querySelector(".tt-rationale").textContent = d.exposure_rationale;
+  tt.style.left = (x + 15) + "px"; tt.style.top = (y + 15) + "px"; tt.classList.add("visible");
+}
+function hideTooltip() { document.getElementById("tooltip").classList.remove("visible"); }
+
+init();
+</script>
+</body>
+</html>

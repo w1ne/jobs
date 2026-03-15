@@ -1,0 +1,602 @@
+[
+  {
+    "title": "3D animator",
+    "uri": "http://data.europa.eu/esco/occupation/52df9d56-efd4-48d0-ad93-59231943fc4c",
+    "isco_code": "2166.3.1",
+    "slug": "52df9d56-efd4-48d0-ad93-59231943fc4c"
+  },
+  {
+    "title": "3D body scanning technologies",
+    "uri": "http://data.europa.eu/esco/skill/9bc3b9ae-50d8-4a32-857e-8cf8d9b4ba8e",
+    "isco_code": null,
+    "slug": "9bc3b9ae-50d8-4a32-857e-8cf8d9b4ba8e"
+  },
+  {
+    "title": "3D lighting",
+    "uri": "http://data.europa.eu/esco/skill/6e53fd99-b646-4327-9580-ac062ab21188",
+    "isco_code": null,
+    "slug": "6e53fd99-b646-4327-9580-ac062ab21188"
+  },
+  {
+    "title": "3D modeller",
+    "uri": "http://data.europa.eu/esco/occupation/bab5fa79-7f96-4e21-87b6-1eba560b8d9a",
+    "isco_code": "2166.1",
+    "slug": "bab5fa79-7f96-4e21-87b6-1eba560b8d9a"
+  },
+  {
+    "title": "3D modelling",
+    "uri": "http://data.europa.eu/esco/skill/97965983-0da4-4902-9daf-d5cd2693ef73",
+    "isco_code": null,
+    "slug": "97965983-0da4-4902-9daf-d5cd2693ef73"
+  },
+  {
+    "title": "3D printing process",
+    "uri": "http://data.europa.eu/esco/skill/2afb2b59-c9a3-4cf3-b1dd-1a2fad51e583",
+    "isco_code": null,
+    "slug": "2afb2b59-c9a3-4cf3-b1dd-1a2fad51e583"
+  },
+  {
+    "title": "3D printing technician",
+    "uri": "http://data.europa.eu/esco/occupation/4cf7be91-fed9-47a7-9ca9-e74c7eb6becb",
+    "isco_code": "3118.1",
+    "slug": "4cf7be91-fed9-47a7-9ca9-e74c7eb6becb"
+  },
+  {
+    "title": "3D texturing",
+    "uri": "http://data.europa.eu/esco/skill/3e7516dc-0f7c-4686-8b2f-fade4e5d21be",
+    "isco_code": null,
+    "slug": "3e7516dc-0f7c-4686-8b2f-fade4e5d21be"
+  },
+  {
+    "title": "ABAP",
+    "uri": "http://data.europa.eu/esco/skill/eb0e5615-1575-4a86-a1a2-7d39595033c5",
+    "isco_code": null,
+    "slug": "eb0e5615-1575-4a86-a1a2-7d39595033c5"
+  },
+  {
+    "title": "ABBYY FineReader",
+    "uri": "http://data.europa.eu/esco/skill/9a35cb50-8106-45f9-8aba-2df99dd6f913",
+    "isco_code": null,
+    "slug": "9a35cb50-8106-45f9-8aba-2df99dd6f913"
+  },
+  {
+    "title": "abide by business ethical code of conducts",
+    "uri": "http://data.europa.eu/esco/skill/6bc02a4a-66af-4b49-9bd3-d07695d52b42",
+    "isco_code": null,
+    "slug": "6bc02a4a-66af-4b49-9bd3-d07695d52b42"
+  },
+  {
+    "title": "abide by regulations on banned materials",
+    "uri": "http://data.europa.eu/esco/skill/c0ccbd15-36f3-4515-ae0b-b4062d225ee2",
+    "isco_code": null,
+    "slug": "c0ccbd15-36f3-4515-ae0b-b4062d225ee2"
+  },
+  {
+    "title": "abrasive blasting operator",
+    "uri": "http://data.europa.eu/esco/occupation/3c0af499-39f6-4468-9ba4-b13a26d5f888",
+    "isco_code": "8122.1",
+    "slug": "3c0af499-39f6-4468-9ba4-b13a26d5f888"
+  },
+  {
+    "title": "abrasive blasting processes",
+    "uri": "http://data.europa.eu/esco/skill/27247d7e-d327-4ba2-87fe-215143be6453",
+    "isco_code": null,
+    "slug": "27247d7e-d327-4ba2-87fe-215143be6453"
+  },
+  {
+    "title": "abrasive machining processes",
+    "uri": "http://data.europa.eu/esco/skill/f777173e-567c-4d4a-80b3-0ff5353bb9ce",
+    "isco_code": null,
+    "slug": "f777173e-567c-4d4a-80b3-0ff5353bb9ce"
+  },
+  {
+    "title": "Absorb (learning management systems)",
+    "uri": "http://data.europa.eu/esco/skill/0189f448-179e-47cc-9716-c5c3ac4b1aec",
+    "isco_code": null,
+    "slug": "0189f448-179e-47cc-9716-c5c3ac4b1aec"
+  },
+  {
+    "title": "absorbent pad machine operator",
+    "uri": "http://data.europa.eu/esco/occupation/c706886d-5bc7-4430-9a72-051fc483235f",
+    "isco_code": "8143.1",
+    "slug": "c706886d-5bc7-4430-9a72-051fc483235f"
+  },
+  {
+    "title": "academic advisor",
+    "uri": "http://data.europa.eu/esco/occupation/abab3d6a-82b9-49bd-8a4b-7bc678130558",
+    "isco_code": "2359.1",
+    "slug": "abab3d6a-82b9-49bd-8a4b-7bc678130558"
+  },
+  {
+    "title": "academic support officer",
+    "uri": "http://data.europa.eu/esco/occupation/2ddde737-28f3-444d-b1f8-ef12cc2df3c7",
+    "isco_code": "2359.2",
+    "slug": "2ddde737-28f3-444d-b1f8-ef12cc2df3c7"
+  },
+  {
+    "title": "accept constructive criticism",
+    "uri": "http://data.europa.eu/esco/skill/a311ab20-75df-4aff-8016-3142c5659d30",
+    "isco_code": null,
+    "slug": "a311ab20-75df-4aff-8016-3142c5659d30"
+  },
+  {
+    "title": "advise on preparation of diet food",
+    "uri": "http://data.europa.eu/esco/skill/f5584cdb-fded-4dfe-b246-ef06f442d3a7",
+    "isco_code": null,
+    "slug": "f5584cdb-fded-4dfe-b246-ef06f442d3a7"
+  },
+  {
+    "title": "advise on property value",
+    "uri": "http://data.europa.eu/esco/skill/410ed4d3-78a5-44c4-a5bd-4276900b463e",
+    "isco_code": null,
+    "slug": "410ed4d3-78a5-44c4-a5bd-4276900b463e"
+  },
+  {
+    "title": "advise on public finance",
+    "uri": "http://data.europa.eu/esco/skill/a9640376-8d72-4a70-a4a3-7a18e2e8f3c0",
+    "isco_code": null,
+    "slug": "a9640376-8d72-4a70-a4a3-7a18e2e8f3c0"
+  },
+  {
+    "title": "advise on public image",
+    "uri": "http://data.europa.eu/esco/skill/d952e003-b5af-4a8a-9d32-921d34dc4907",
+    "isco_code": null,
+    "slug": "d952e003-b5af-4a8a-9d32-921d34dc4907"
+  },
+  {
+    "title": "advise on public relations",
+    "uri": "http://data.europa.eu/esco/skill/2691f4d8-d090-423f-afd7-9e721f562e8d",
+    "isco_code": null,
+    "slug": "2691f4d8-d090-423f-afd7-9e721f562e8d"
+  },
+  {
+    "title": "advise on railway infrastructure repairs",
+    "uri": "http://data.europa.eu/esco/skill/d619761b-cf3b-471b-8113-87792b256939",
+    "isco_code": null,
+    "slug": "d619761b-cf3b-471b-8113-87792b256939"
+  },
+  {
+    "title": "advise on rehabilitation exercises",
+    "uri": "http://data.europa.eu/esco/skill/c823d9a1-5403-4f2d-b9a5-2fada5ee0966",
+    "isco_code": null,
+    "slug": "c823d9a1-5403-4f2d-b9a5-2fada5ee0966"
+  },
+  {
+    "title": "advise on risk management",
+    "uri": "http://data.europa.eu/esco/skill/0efbe2dc-2770-47ec-b8f4-d1bdff6ac0a4",
+    "isco_code": null,
+    "slug": "0efbe2dc-2770-47ec-b8f4-d1bdff6ac0a4"
+  },
+  {
+    "title": "advise on safety improvements",
+    "uri": "http://data.europa.eu/esco/skill/37838e04-ac5f-43a5-82d0-35f42351fd60",
+    "isco_code": null,
+    "slug": "37838e04-ac5f-43a5-82d0-35f42351fd60"
+  },
+  {
+    "title": "advise on security risk management",
+    "uri": "http://data.europa.eu/esco/skill/e71c6cee-7247-49f4-829a-141c880ae938",
+    "isco_code": null,
+    "slug": "e71c6cee-7247-49f4-829a-141c880ae938"
+  },
+  {
+    "title": "advise on site selection",
+    "uri": "http://data.europa.eu/esco/skill/9e4dc918-cc74-432e-9b39-53b1b606748a",
+    "isco_code": null,
+    "slug": "9e4dc918-cc74-432e-9b39-53b1b606748a"
+  },
+  {
+    "title": "advise on social enterprise",
+    "uri": "http://data.europa.eu/esco/skill/83259f23-b896-46c6-a972-4d63f2128559",
+    "isco_code": null,
+    "slug": "83259f23-b896-46c6-a972-4d63f2128559"
+  },
+  {
+    "title": "advise on social responsibility and sustainability matters",
+    "uri": "http://data.europa.eu/esco/skill/b2f05068-c409-43ec-ba58-b5dfe991ca5e",
+    "isco_code": null,
+    "slug": "b2f05068-c409-43ec-ba58-b5dfe991ca5e"
+  },
+  {
+    "title": "advise on social security benefits",
+    "uri": "http://data.europa.eu/esco/skill/f28c3e9b-8666-48d4-a5e4-542ac193879b",
+    "isco_code": null,
+    "slug": "f28c3e9b-8666-48d4-a5e4-542ac193879b"
+  },
+  {
+    "title": "advise on social service process",
+    "uri": "http://data.europa.eu/esco/skill/956cd4b3-6cf2-4871-b275-9a34a770c633",
+    "isco_code": null,
+    "slug": "956cd4b3-6cf2-4871-b275-9a34a770c633"
+  },
+  {
+    "title": "advise on soil and water protection",
+    "uri": "http://data.europa.eu/esco/skill/3e25fd3e-2bcd-4320-9587-0aadf7fb93b1",
+    "isco_code": null,
+    "slug": "3e25fd3e-2bcd-4320-9587-0aadf7fb93b1"
+  },
+  {
+    "title": "advise on strengthening security",
+    "uri": "http://data.europa.eu/esco/skill/370ebe1f-55a5-424f-a44e-f3c19222d63b",
+    "isco_code": null,
+    "slug": "370ebe1f-55a5-424f-a44e-f3c19222d63b"
+  },
+  {
+    "title": "advise on tanning treatments",
+    "uri": "http://data.europa.eu/esco/skill/522d861a-0f47-4c19-bc1d-c5c7f310b339",
+    "isco_code": null,
+    "slug": "522d861a-0f47-4c19-bc1d-c5c7f310b339"
+  },
+  {
+    "title": "advise on tax planning",
+    "uri": "http://data.europa.eu/esco/skill/161a6c5a-593a-4977-b7b7-49c6a2a2f2a3",
+    "isco_code": null,
+    "slug": "161a6c5a-593a-4977-b7b7-49c6a2a2f2a3"
+  },
+  {
+    "title": "advise on tax policy",
+    "uri": "http://data.europa.eu/esco/skill/b5feaf25-3975-4e74-85fd-4470e344ba2e",
+    "isco_code": null,
+    "slug": "b5feaf25-3975-4e74-85fd-4470e344ba2e"
+  },
+  {
+    "title": "animal therapist",
+    "uri": "http://data.europa.eu/esco/occupation/0b2d3242-22a3-4de5-bd29-efd39cdf2c31",
+    "isco_code": "3255.1",
+    "slug": "0b2d3242-22a3-4de5-bd29-efd39cdf2c31"
+  },
+  {
+    "title": "animal therapy",
+    "uri": "http://data.europa.eu/esco/skill/b2ed1c79-528a-4240-a37b-31f635dd4d9e",
+    "isco_code": null,
+    "slug": "b2ed1c79-528a-4240-a37b-31f635dd4d9e"
+  },
+  {
+    "title": "animal trainer",
+    "uri": "http://data.europa.eu/esco/occupation/fc1da244-880f-407d-bfa7-789a2f468ea0",
+    "isco_code": "5164.2.1",
+    "slug": "fc1da244-880f-407d-bfa7-789a2f468ea0"
+  },
+  {
+    "title": "animal training",
+    "uri": "http://data.europa.eu/esco/skill/63c58fd8-e920-4f37-a6ab-32f86a4aef7a",
+    "isco_code": null,
+    "slug": "63c58fd8-e920-4f37-a6ab-32f86a4aef7a"
+  },
+  {
+    "title": "animal transport regulations",
+    "uri": "http://data.europa.eu/esco/skill/0f4c6e98-2eea-4e45-931d-c20a27f8f327",
+    "isco_code": null,
+    "slug": "0f4c6e98-2eea-4e45-931d-c20a27f8f327"
+  },
+  {
+    "title": "animal transportation vehicles",
+    "uri": "http://data.europa.eu/esco/skill/f1d84ceb-f9bc-4b69-866d-426ee337f9af",
+    "isco_code": null,
+    "slug": "f1d84ceb-f9bc-4b69-866d-426ee337f9af"
+  },
+  {
+    "title": "animal welfare",
+    "uri": "http://data.europa.eu/esco/skill/4e6cfb60-9579-4822-8a5e-424bc0c8835c",
+    "isco_code": null,
+    "slug": "4e6cfb60-9579-4822-8a5e-424bc0c8835c"
+  },
+  {
+    "title": "animal welfare inspector",
+    "uri": "http://data.europa.eu/esco/occupation/2de007c6-3223-4cd1-9561-e8a2e16e049d",
+    "isco_code": "5164.4",
+    "slug": "2de007c6-3223-4cd1-9561-e8a2e16e049d"
+  },
+  {
+    "title": "animal welfare legislation",
+    "uri": "http://data.europa.eu/esco/skill/49212efd-acf0-4257-a011-e07c9e369ecf",
+    "isco_code": null,
+    "slug": "49212efd-acf0-4257-a011-e07c9e369ecf"
+  },
+  {
+    "title": "animate 3D organic forms",
+    "uri": "http://data.europa.eu/esco/skill/7edd11f2-6b4a-4a76-8b82-b5c57f3d8f07",
+    "isco_code": null,
+    "slug": "7edd11f2-6b4a-4a76-8b82-b5c57f3d8f07"
+  },
+  {
+    "title": "animate in the outdoors",
+    "uri": "http://data.europa.eu/esco/skill/698dccfd-c6e9-4a39-b3bf-0715d6246e44",
+    "isco_code": null,
+    "slug": "698dccfd-c6e9-4a39-b3bf-0715d6246e44"
+  },
+  {
+    "title": "animation director",
+    "uri": "http://data.europa.eu/esco/occupation/30b25ee4-da97-4167-8592-460217f6bdcc",
+    "isco_code": "2166.4.1",
+    "slug": "30b25ee4-da97-4167-8592-460217f6bdcc"
+  },
+  {
+    "title": "animation layout artist",
+    "uri": "http://data.europa.eu/esco/occupation/951b9d94-9bf1-4771-877d-3a26b75d9e53",
+    "isco_code": "2166.2",
+    "slug": "951b9d94-9bf1-4771-877d-3a26b75d9e53"
+  },
+  {
+    "title": "animator",
+    "uri": "http://data.europa.eu/esco/occupation/48c8eccb-4bd0-487e-a187-4953cbbe956e",
+    "isco_code": "2166.3",
+    "slug": "48c8eccb-4bd0-487e-a187-4953cbbe956e"
+  },
+  {
+    "title": "announce amusement park attractions",
+    "uri": "http://data.europa.eu/esco/skill/0f8b7a8d-371b-4ee9-8f4e-3317442bd047",
+    "isco_code": null,
+    "slug": "0f8b7a8d-371b-4ee9-8f4e-3317442bd047"
+  },
+  {
+    "title": "announce bingo numbers",
+    "uri": "http://data.europa.eu/esco/skill/e6776fbf-844b-464d-bcbe-fd4fc8168a76",
+    "isco_code": null,
+    "slug": "e6776fbf-844b-464d-bcbe-fd4fc8168a76"
+  },
+  {
+    "title": "Announcers on radio, television and other media",
+    "uri": "http://data.europa.eu/esco/isco/C2656",
+    "isco_code": "2656",
+    "slug": "C2656"
+  },
+  {
+    "title": "anodising machine operator",
+    "uri": "http://data.europa.eu/esco/occupation/e9f0b7ae-c848-464e-af9d-55eb87a592e0",
+    "isco_code": "8122.2",
+    "slug": "e9f0b7ae-c848-464e-af9d-55eb87a592e0"
+  },
+  {
+    "title": "anodising process",
+    "uri": "http://data.europa.eu/esco/skill/ff9b7465-c37a-4d5d-83de-f2ef00bcb099",
+    "isco_code": null,
+    "slug": "ff9b7465-c37a-4d5d-83de-f2ef00bcb099"
+  },
+  {
+    "title": "anodising specifications",
+    "uri": "http://data.europa.eu/esco/skill/9ad3c429-04d9-4ed5-acc2-9bdd345ee5ac",
+    "isco_code": null,
+    "slug": "9ad3c429-04d9-4ed5-acc2-9bdd345ee5ac"
+  },
+  {
+    "title": "artistic painter",
+    "uri": "http://data.europa.eu/esco/occupation/374d925a-107b-4c99-bc8b-75483441f062",
+    "isco_code": "2651.1",
+    "slug": "374d925a-107b-4c99-bc8b-75483441f062"
+  },
+  {
+    "title": "Artistic, cultural and culinary associate professionals",
+    "uri": "http://data.europa.eu/esco/isco/C343",
+    "isco_code": "343",
+    "slug": "C343"
+  },
+  {
+    "title": "arts",
+    "uri": "http://data.europa.eu/esco/isced-f/021",
+    "isco_code": null,
+    "slug": "021"
+  },
+  {
+    "title": "arts and humanities",
+    "uri": "http://data.europa.eu/esco/isced-f/02",
+    "isco_code": null,
+    "slug": "02"
+  },
+  {
+    "title": "arts and humanities not elsewhere classified",
+    "uri": "http://data.europa.eu/esco/isced-f/029",
+    "isco_code": null,
+    "slug": "029"
+  },
+  {
+    "title": "arts and humanities not elsewhere classified",
+    "uri": "http://data.europa.eu/esco/isced-f/0299",
+    "isco_code": null,
+    "slug": "0299"
+  },
+  {
+    "title": "arts and humanities not further defined",
+    "uri": "http://data.europa.eu/esco/isced-f/0200",
+    "isco_code": null,
+    "slug": "0200"
+  },
+  {
+    "title": "arts and humanities not further defined",
+    "uri": "http://data.europa.eu/esco/isced-f/020",
+    "isco_code": null,
+    "slug": "020"
+  },
+  {
+    "title": "arts education officer",
+    "uri": "http://data.europa.eu/esco/occupation/c2efadc4-6f47-4f34-997b-dd80aba609dd",
+    "isco_code": "2621.2",
+    "slug": "c2efadc4-6f47-4f34-997b-dd80aba609dd"
+  },
+  {
+    "title": "arts not elsewhere classified",
+    "uri": "http://data.europa.eu/esco/isced-f/0219",
+    "isco_code": null,
+    "slug": "0219"
+  },
+  {
+    "title": "arts not further defined",
+    "uri": "http://data.europa.eu/esco/isced-f/0210",
+    "isco_code": null,
+    "slug": "0210"
+  },
+  {
+    "title": "asbestos abatement worker",
+    "uri": "http://data.europa.eu/esco/occupation/990bfa45-5001-4365-93b6-daf01a03b4cd",
+    "isco_code": "7133.1",
+    "slug": "990bfa45-5001-4365-93b6-daf01a03b4cd"
+  },
+  {
+    "title": "asbestos removal regulations",
+    "uri": "http://data.europa.eu/esco/skill/d13f1685-9848-4c9e-a40a-686ddb407858",
+    "isco_code": null,
+    "slug": "d13f1685-9848-4c9e-a40a-686ddb407858"
+  },
+  {
+    "title": "ask key questions about requirements of the artistic work",
+    "uri": "http://data.europa.eu/esco/skill/26a29613-b018-4fc5-b0b5-6f73483afe62",
+    "isco_code": null,
+    "slug": "26a29613-b018-4fc5-b0b5-6f73483afe62"
+  },
+  {
+    "title": "ask questions at events",
+    "uri": "http://data.europa.eu/esco/skill/0d3890b8-ecf3-497e-8dff-855f0c97d85c",
+    "isco_code": null,
+    "slug": "0d3890b8-ecf3-497e-8dff-855f0c97d85c"
+  },
+  {
+    "title": "ASP.NET",
+    "uri": "http://data.europa.eu/esco/skill/56a7f561-1d55-43c9-9cd7-36a0a9bc6c50",
+    "isco_code": null,
+    "slug": "56a7f561-1d55-43c9-9cd7-36a0a9bc6c50"
+  },
+  {
+    "title": "asphalt laboratory technician",
+    "uri": "http://data.europa.eu/esco/occupation/00634fc4-802a-461b-8af0-499273756f99",
+    "isco_code": "3116.1.1",
+    "slug": "00634fc4-802a-461b-8af0-499273756f99"
+  },
+  {
+    "title": "asphalt mixes",
+    "uri": "http://data.europa.eu/esco/skill/f91ad7eb-f4dd-400f-b69e-6a4e23024741",
+    "isco_code": null,
+    "slug": "f91ad7eb-f4dd-400f-b69e-6a4e23024741"
+  },
+  {
+    "title": "asphalt plant operator",
+    "uri": "http://data.europa.eu/esco/occupation/2fa8c1fc-e722-4985-9822-f5d8174248cf",
+    "isco_code": "8114.1",
+    "slug": "2fa8c1fc-e722-4985-9822-f5d8174248cf"
+  },
+  {
+    "title": "assayer",
+    "uri": "http://data.europa.eu/esco/occupation/808b5940-8092-4f08-bc37-9b60ee5761d8",
+    "isco_code": "2146.1",
+    "slug": "808b5940-8092-4f08-bc37-9b60ee5761d8"
+  },
+  {
+    "title": "attitudes",
+    "uri": "http://data.europa.eu/esco/skill/A1.0.0",
+    "isco_code": "A1.0.0",
+    "slug": "A1.0.0"
+  },
+  {
+    "title": "attitudes",
+    "uri": "http://data.europa.eu/esco/skill/A1",
+    "isco_code": "A1",
+    "slug": "A1"
+  },
+  {
+    "title": "attitudes",
+    "uri": "http://data.europa.eu/esco/skill/A1.0",
+    "isco_code": "A1.0",
+    "slug": "A1.0"
+  },
+  {
+    "title": "attitudes",
+    "uri": "http://data.europa.eu/esco/skill/a90b12b6-248d-487f-be36-c44bd9a032e5",
+    "isco_code": null,
+    "slug": "a90b12b6-248d-487f-be36-c44bd9a032e5"
+  },
+  {
+    "title": "attitudes and values",
+    "uri": "http://data.europa.eu/esco/skill/81c66e05-0b64-4cc5-8707-432f59fb6528",
+    "isco_code": null,
+    "slug": "81c66e05-0b64-4cc5-8707-432f59fb6528"
+  },
+  {
+    "title": "attitudes and values",
+    "uri": "http://data.europa.eu/esco/skill/A",
+    "isco_code": "A",
+    "slug": "A"
+  },
+  {
+    "title": "attract gamers",
+    "uri": "http://data.europa.eu/esco/skill/b3c000ab-548d-401c-94de-ab4903c33aed",
+    "isco_code": null,
+    "slug": "b3c000ab-548d-401c-94de-ab4903c33aed"
+  },
+  {
+    "title": "attraction operator",
+    "uri": "http://data.europa.eu/esco/occupation/39a59c5c-4338-4480-bdc8-96328a491907",
+    "isco_code": "9629.3",
+    "slug": "39a59c5c-4338-4480-bdc8-96328a491907"
+  },
+  {
+    "title": "au pair",
+    "uri": "http://data.europa.eu/esco/occupation/f219f643-4df1-4a9a-b6c5-dc2f48c22806",
+    "isco_code": "5311.1.1",
+    "slug": "f219f643-4df1-4a9a-b6c5-dc2f48c22806"
+  },
+  {
+    "title": "auction characteristics",
+    "uri": "http://data.europa.eu/esco/skill/b4814783-3fb4-422e-b00e-1c09b5d57dde",
+    "isco_code": null,
+    "slug": "b4814783-3fb4-422e-b00e-1c09b5d57dde"
+  },
+  {
+    "title": "auction house manager",
+    "uri": "http://data.europa.eu/esco/occupation/04b52c04-0620-4558-8f89-e252de2963ff",
+    "isco_code": "1221.1",
+    "slug": "04b52c04-0620-4558-8f89-e252de2963ff"
+  },
+  {
+    "title": "auctioneer",
+    "uri": "http://data.europa.eu/esco/occupation/f1ecc3c4-8212-4386-871a-6fda1b5b4d91",
+    "isco_code": "3339.2",
+    "slug": "f1ecc3c4-8212-4386-871a-6fda1b5b4d91"
+  },
+  {
+    "title": "audio and video equipment shop manager",
+    "uri": "http://data.europa.eu/esco/occupation/463a687a-c7e9-469a-bb38-dcdfe1e7e35f",
+    "isco_code": "1420.4.3",
+    "slug": "463a687a-c7e9-469a-bb38-dcdfe1e7e35f"
+  },
+  {
+    "title": "audio and video equipment specialised seller",
+    "uri": "http://data.europa.eu/esco/occupation/a10222e7-1940-4ca3-86c1-99b115535969",
+    "isco_code": "5223.7.2",
+    "slug": "a10222e7-1940-4ca3-86c1-99b115535969"
+  },
+  {
+    "title": "audio describer",
+    "uri": "http://data.europa.eu/esco/occupation/0dce2f9b-eda5-4dc4-ba74-36eeed8c9a44",
+    "isco_code": "2656.1",
+    "slug": "0dce2f9b-eda5-4dc4-ba74-36eeed8c9a44"
+  },
+  {
+    "title": "audio editing software",
+    "uri": "http://data.europa.eu/esco/skill/cae4c053-05d1-413d-8499-f37793aad56e",
+    "isco_code": null,
+    "slug": "cae4c053-05d1-413d-8499-f37793aad56e"
+  },
+  {
+    "title": "audio mastering",
+    "uri": "http://data.europa.eu/esco/skill/e81d7bed-b7c7-41bf-a30a-e3201e8f09b3",
+    "isco_code": null,
+    "slug": "e81d7bed-b7c7-41bf-a30a-e3201e8f09b3"
+  },
+  {
+    "title": "audio post-production",
+    "uri": "http://data.europa.eu/esco/skill/256df100-51cf-43b2-9a24-7277afa74707",
+    "isco_code": null,
+    "slug": "256df100-51cf-43b2-9a24-7277afa74707"
+  },
+  {
+    "title": "audio production technician",
+    "uri": "http://data.europa.eu/esco/occupation/2cbb23b0-0bf1-4871-9e6d-18f005987310",
+    "isco_code": "3521.1.1",
+    "slug": "2cbb23b0-0bf1-4871-9e6d-18f005987310"
+  },
+  {
+    "title": "audio technology",
+    "uri": "http://data.europa.eu/esco/skill/a520b743-8f40-43ac-a2d5-755899120844",
+    "isco_code": null,
+    "slug": "a520b743-8f40-43ac-a2d5-755899120844"
+  }
+]
