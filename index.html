@@ -259,6 +259,11 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
+    .view-toggle button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
     canvas#canvas {
       display: block;
       position: fixed;
@@ -394,13 +399,14 @@
     <div class="header-section">
       <h1>AI Exposure of the European Job Market</h1>
       <div class="subtitle" id="occCount">...</div>
-      <div class="subtitle">Data from <a href="https://ec.europa.eu/esco/">ESCO</a>, scored by Gemini Flash<br><a
+      <div class="subtitle">Data from Eurostat and Cedefop, exposure estimated by model rubric<br><a
           href="https://github.com/w1ne/jobs">GitHub</a></div>
+      <div class="subtitle">10 ISCO-08 major groups. Area = Eurostat employment in 2024, pay = Eurostat mean annual earnings in 2022, outlook = Cedefop projected labour demand change from 2024 to 2035.</div>
     </div>
 
     <div class="view-toggle">
       <button class="active" onclick="setView('treemap')">Treemap</button>
-      <button onclick="setView('scatter')">Exposure vs Outlook</button>
+      <button disabled title="Not implemented in the European demo">Exposure vs Outlook</button>
     </div>
 
     <div class="stat-group">
@@ -440,7 +446,7 @@
     <div class="stat-group">
       <div class="stat-label-caps">WAGES EXPOSED</div>
       <div class="stat-big" id="statWagesExposed">—</div>
-      <div class="stat-sub">annual wages in high-exposure jobs (7+)</div>
+      <div class="stat-sub">mean annual earnings in high-exposure groups (7+)</div>
     </div>
 
     <div class="legend-bottom">
@@ -450,7 +456,7 @@
     </div>
 
     <div class="search-container" style="margin-top: 10px;">
-      <input type="text" id="search" placeholder="Search occupations..." oninput="handleSearch(this.value)">
+      <input type="text" id="search" placeholder="Search groups..." oninput="handleSearch(this.value)">
     </div>
   </div>
 
@@ -463,11 +469,11 @@
     </div>
     <div class="tt-stats">
       <div class="tt-stat-box">
-        <div class="label">Median Pay</div>
+        <div class="label">Mean Pay (2022)</div>
         <div class="value tt-pay"></div>
       </div>
       <div class="tt-stat-box">
-        <div class="label">Total Jobs</div>
+        <div class="label">Employment (2024)</div>
         <div class="value tt-jobs"></div>
       </div>
       <div class="tt-stat-box">
@@ -475,7 +481,7 @@
         <div class="value tt-exp"></div>
       </div>
       <div class="tt-stat-box">
-        <div class="label">Outlook</div>
+        <div class="label">Outlook 2024-2035</div>
         <div class="value tt-out"></div>
       </div>
     </div>
@@ -579,6 +585,7 @@
     let dpr = window.devicePixelRatio || 1;
 
     function setView(v) {
+      if (v !== "treemap") return;
       currentView = v;
       document.querySelectorAll(".view-toggle button").forEach(b => b.classList.remove("active"));
       document.querySelector(`button[onclick="setView('${v}')"]`).classList.add("active");
@@ -598,6 +605,20 @@
 
       const M = 16, G = 2;
       const tx = M, ty = M, tw = w - M * 2, th = h - M * 2;
+
+      if (allData.length <= 12) {
+        categoryRects = [];
+        rects = squarify(
+          allData
+            .map(d => ({ ...d, value: d.jobs || 1 }))
+            .sort((a, b) => (b.jobs || 0) - (a.jobs || 0)),
+          tx,
+          ty,
+          tw,
+          th
+        );
+        return;
+      }
 
       const byCat = {};
       for (const d of allData) {
@@ -642,24 +663,31 @@
       }
 
       // category labels
-      ctx.fillStyle = "rgba(255,255,255,0.15)";
-      ctx.font = "bold 24px Inter"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      for (const cr of categoryRects) {
-        if (cr.rw > 150 && cr.rh > 80) {
-          ctx.save(); ctx.beginPath(); ctx.rect(cr.rx, cr.ry, cr.rw, cr.rh); ctx.clip();
-          ctx.fillText(cr.cat, cr.rx + cr.rw / 2, cr.ry + cr.rh / 2);
-          ctx.restore();
+      if (categoryRects.length > 1) {
+        ctx.fillStyle = "rgba(255,255,255,0.15)";
+        ctx.font = "bold 24px Inter"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        for (const cr of categoryRects) {
+          if (cr.rw > 150 && cr.rh > 80) {
+            ctx.save(); ctx.beginPath(); ctx.rect(cr.rx, cr.ry, cr.rw, cr.rh); ctx.clip();
+            ctx.fillText(cr.cat, cr.rx + cr.rw / 2, cr.ry + cr.rh / 2);
+            ctx.restore();
+          }
         }
       }
 
       // Item labels (if zoomed/large enough)
       for (const r of rects) {
-        if (r.rw > 60 && r.rh > 24) {
+        if (r.rw > 90 && r.rh > 42) {
           ctx.save(); ctx.beginPath(); ctx.rect(r.rx + 4, r.ry + 2, r.rw - 8, r.rh - 4); ctx.clip();
-          const fs = Math.min(13, Math.max(9, Math.min(r.rw / 10, r.rh / 3)));
-          ctx.font = `500 ${fs}px Inter`; ctx.fillStyle = "rgba(255,255,255,0.9)";
+          const fs = Math.min(22, Math.max(11, Math.min(r.rw / 12, r.rh / 4)));
+          ctx.font = `600 ${fs}px Inter`; ctx.fillStyle = "rgba(255,255,255,0.92)";
           ctx.textAlign = "left"; ctx.textBaseline = "top";
           ctx.fillText(r.title, r.rx + 6, r.ry + 4);
+          if (r.rw > 120 && r.rh > 70) {
+            ctx.font = `500 ${Math.max(10, fs - 6)}px Inter`;
+            ctx.fillStyle = "rgba(255,255,255,0.7)";
+            ctx.fillText(`${(r.jobs / 1e6).toFixed(1)}M jobs`, r.rx + 6, r.ry + 10 + fs);
+          }
           ctx.restore();
         }
       }
@@ -668,7 +696,7 @@
     // ... Additional scatter views and stats logic ...
     function renderStats() {
       const totalJobs = allData.reduce((s, d) => s + (d.jobs || 0), 0);
-      document.getElementById("occCount").textContent = `${allData.length} occupations - color = AI exposure`;
+      document.getElementById("occCount").textContent = `${allData.length} occupational groups - color = estimated AI exposure`;
 
       const statTotalJobs = document.getElementById("statTotalJobs");
       if (statTotalJobs) statTotalJobs.textContent = (totalJobs / 1e6).toFixed(0) + "M";
@@ -750,13 +778,17 @@
 
     function showTooltip(d, mx, my) {
       const tt = document.getElementById("tooltip");
-      tt.querySelector(".tt-cat").textContent = d.category;
+      tt.querySelector(".tt-cat").textContent = "Official EU labour group";
       tt.querySelector(".tt-title").textContent = d.title;
-      tt.querySelector(".tt-pay").textContent = "\u20ac" + d.pay.toLocaleString();
-      tt.querySelector(".tt-jobs").textContent = (d.jobs / 1000).toFixed(0) + "K";
-      tt.querySelector(".tt-exp").innerHTML = `<span style="color:${exposureColorCSS(d.exposure, 1)}">${d.exposure}/10</span>`;
-      tt.querySelector(".tt-out").textContent = d.outlook + "%";
-      tt.querySelector(".tt-rationale").textContent = d.exposure_rationale;
+      tt.querySelector(".tt-pay").textContent = d.pay == null ? "—" : "\u20ac" + d.pay.toLocaleString();
+      tt.querySelector(".tt-jobs").textContent = d.jobs == null
+        ? "—"
+        : (d.jobs >= 1e6 ? (d.jobs / 1e6).toFixed(1) + "M" : (d.jobs / 1000).toFixed(0) + "K");
+      tt.querySelector(".tt-exp").innerHTML = d.exposure == null
+        ? "—"
+        : `<span style="color:${exposureColorCSS(d.exposure, 1)}">${d.exposure}/10</span>`;
+      tt.querySelector(".tt-out").textContent = d.outlook == null ? "—" : d.outlook + "%";
+      tt.querySelector(".tt-rationale").textContent = d.exposure_rationale || "No rationale available.";
 
       let tx = mx + 20, ty = my - 100;
       if (tx + 360 > window.innerWidth) tx = mx - 360;
