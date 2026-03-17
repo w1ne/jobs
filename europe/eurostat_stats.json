@@ -1,0 +1,162 @@
+{
+  "OC1": {
+    "isco_code": "OC1",
+    "title": "Managers",
+    "slug": "managers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 10914000,
+    "mean_annual_earnings_2022": 74626,
+    "outlook_pct_2024_2035": 1.2,
+    "forecast_jobs_2024": 11016951,
+    "forecast_jobs_2035": 11149363
+  },
+  "OC2": {
+    "isco_code": "OC2",
+    "title": "Professionals",
+    "slug": "professionals",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 47147100,
+    "mean_annual_earnings_2022": 51477,
+    "outlook_pct_2024_2035": 16.4,
+    "forecast_jobs_2024": 46685036,
+    "forecast_jobs_2035": 54344314
+  },
+  "OC3": {
+    "isco_code": "OC3",
+    "title": "Technicians and Associate Professionals",
+    "slug": "technicians-and-associate-professionals",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 32991000,
+    "mean_annual_earnings_2022": 43974,
+    "outlook_pct_2024_2035": 7.0,
+    "forecast_jobs_2024": 34706187,
+    "forecast_jobs_2035": 37126562
+  },
+  "OC4": {
+    "isco_code": "OC4",
+    "title": "Clerical Support Workers",
+    "slug": "clerical-support-workers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 19816600,
+    "mean_annual_earnings_2022": 35388,
+    "outlook_pct_2024_2035": -5.4,
+    "forecast_jobs_2024": 20820837,
+    "forecast_jobs_2035": 19702910
+  },
+  "OC5": {
+    "isco_code": "OC5",
+    "title": "Service and Sales Workers",
+    "slug": "service-and-sales-workers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 32940500,
+    "mean_annual_earnings_2022": 28155,
+    "outlook_pct_2024_2035": 0.9,
+    "forecast_jobs_2024": 34851464,
+    "forecast_jobs_2035": 35170742
+  },
+  "OC6": {
+    "isco_code": "OC6",
+    "title": "Skilled Agricultural, Forestry and Fishery Workers",
+    "slug": "skilled-agricultural-forestry-and-fishery-workers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 5353900,
+    "mean_annual_earnings_2022": 30738,
+    "outlook_pct_2024_2035": -19.8,
+    "forecast_jobs_2024": 6905303,
+    "forecast_jobs_2035": 5536695
+  },
+  "OC7": {
+    "isco_code": "OC7",
+    "title": "Craft and Related Trades Workers",
+    "slug": "craft-and-related-trades-workers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 23159300,
+    "mean_annual_earnings_2022": 31598,
+    "outlook_pct_2024_2035": -2.5,
+    "forecast_jobs_2024": 24849740,
+    "forecast_jobs_2035": 24217981
+  },
+  "OC8": {
+    "isco_code": "OC8",
+    "title": "Plant and Machine Operators and Assemblers",
+    "slug": "plant-and-machine-operators-and-assemblers",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 14979500,
+    "mean_annual_earnings_2022": 29469,
+    "outlook_pct_2024_2035": 3.0,
+    "forecast_jobs_2024": 16450593,
+    "forecast_jobs_2035": 16938837
+  },
+  "OC9": {
+    "isco_code": "OC9",
+    "title": "Elementary Occupations",
+    "slug": "elementary-occupations",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 16991000,
+    "mean_annual_earnings_2022": 24121,
+    "outlook_pct_2024_2035": 0.7,
+    "forecast_jobs_2024": 18868965,
+    "forecast_jobs_2035": 19000616
+  },
+  "OC0": {
+    "isco_code": "OC0",
+    "title": "Armed Forces Occupations",
+    "slug": "armed-forces-occupations",
+    "category_label": "ISCO-08 Major Groups",
+    "sources": {
+      "employment": "Eurostat lfsa_egais, EU27_2020, 2024",
+      "earnings": "Eurostat earn_ses22_28, EU27_2020, 2022, GE10",
+      "outlook": "Cedefop Skills Forecast 2025, EU-27, 2024-2035"
+    },
+    "employment_2024": 1227000,
+    "mean_annual_earnings_2022": 53997,
+    "outlook_pct_2024_2035": 5.8,
+    "forecast_jobs_2024": 1271419,
+    "forecast_jobs_2035": 1345303
+  }
+}

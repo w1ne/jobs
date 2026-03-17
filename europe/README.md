@@ -6,38 +6,33 @@ The European counterpart to [karpathy/jobs](https://github.com/karpathy/jobs) (U
 
 ## What's here
 
-ESCO covers **~3 000 occupations** organised into ISCO-08 major groups spanning the entire EU economy. We fetch the list and descriptions via the ESCO REST API, pull employment and wage statistics from Eurostat, score each occupation's AI exposure using an LLM, and render an interactive treemap.
+This European build now ships an official-source grouped dataset based on **10 ISCO-08 major groups** spanning the EU economy. Employment comes from Eurostat LFS, earnings from Eurostat SES, outlook from Cedefop Skills Forecast, and AI exposure is estimated at the group level.
 
 ## Data pipeline
 
-1. **Fetch occupations** (`fetch_esco.py`) — calls the ESCO API to download all occupation titles, URIs, descriptions, and ISCO-08 codes into `occupations.json`.
-2. **Fetch Eurostat stats** (`fetch_eurostat.py`) — downloads EU-wide employment counts (LFS) and median annual wages (Structure of Earnings Survey) by ISCO-08 sub-major group; writes `eurostat_stats.json`.
-3. **Score** (`score.py`) — sends each occupation's description to an LLM via OpenRouter. Results saved incrementally to `scores.json`.
-4. **Build site data** (`build_site_data.py`) — merges ESCO descriptions, Eurostat stats, and AI exposure scores into `site/data.json`.
-5. **Website** (`site/index.html`) — interactive treemap; area = employment, colour = AI exposure.
+1. **Fetch official labour stats** (`fetch_eurostat.py`) — downloads Eurostat employment and earnings data plus Cedefop forecast data for ISCO-08 major groups; writes `eurostat_stats.json`.
+2. **Build site data** (`build_site_data.py`) — merges official labour stats with estimated AI exposure scores into `site/data.json`.
+3. **Website** (`site/index.html`) — interactive treemap; area = employment, colour = AI exposure.
 
 ## Data sources
 
 | Source | What it provides |
 |--------|-----------------|
-| [ESCO API v1](https://esco.ec.europa.eu/en/use-esco/esco-api) | Occupation titles, descriptions, ISCO-08 mapping |
-| [Eurostat LFS `lfsa_egised`](https://ec.europa.eu/eurostat/databrowser/view/lfsa_egised) | Employment by ISCO major group, EU27 |
-| [Eurostat SES `earn_ses_pub1a`](https://ec.europa.eu/eurostat/databrowser/view/earn_ses_pub1a) | Median hourly wages by ISCO, EU27 |
+| [Eurostat LFS `lfsa_egais`](https://ec.europa.eu/eurostat/databrowser/view/lfsa_egais/default/table?lang=en) | Employment by occupation, EU27 |
+| [Eurostat SES `earn_ses22_28`](https://ec.europa.eu/eurostat/databrowser/view/earn_ses22_28/default/table?lang=en) | Mean annual earnings by occupation, EU27 |
 | [Cedefop Skills Forecast](https://www.cedefop.europa.eu/en/tools/skills-intelligence) | 10-year employment growth projections |
 
 ## Key files
 
 | File | Description |
 |------|-------------|
-| `occupations.json` | ESCO occupation list with ISCO-08 codes and API URIs |
-| `eurostat_stats.json` | Employment + wage data per ISCO sub-major group |
-| `scores.json` | AI exposure scores (0–10) with rationales |
+| `eurostat_stats.json` | Employment, earnings, and outlook data per ISCO major group |
 | `site/data.json` | Merged dataset for the frontend |
 | `site/index.html` | Interactive treemap visualisation |
 
 ## AI exposure scoring
 
-Identical rubric to the US edition — see the parent repo's README. Scores run 0 (roofer, dockworker) to 10 (data-entry clerk). Average across EU occupations is expected around 5.0–5.5.
+AI exposure is still an estimated layer rather than an official statistic. In this grouped EU build, scores are assigned at the ISCO major-group level using the same rubric as the US edition.
 
 ## Setup
 
@@ -54,27 +49,19 @@ OPENROUTER_API_KEY=your_key_here
 ## Usage
 
 ```bash
-# 1. Download ESCO occupation list + descriptions (~3 000 occupations, ~10 min)
-uv run python fetch_esco.py
-
-# 2. Download Eurostat employment/wage stats (fast, uses REST API)
+# 1. Download Eurostat/Cedefop group statistics
 uv run python fetch_eurostat.py
 
-# 3. Score AI exposure with an LLM (takes ~2 h for full dataset)
-uv run python score.py
-# or test on a small slice first:
-uv run python score.py --start 0 --end 20
-
-# 4. Build the site data file
+# 2. Build the site data file
 uv run python build_site_data.py
 
-# 5. Serve the site
+# 3. Serve the site
 cd site && python -m http.server 8000
 ```
 
 ## Quick demo (pre-seeded data)
 
-The repo ships `site/data.json` pre-populated with ~130 representative ISCO-08 3-digit groups and realistic EU statistics so you can view the site immediately without running the full pipeline:
+The repo ships `site/data.json` pre-populated with the grouped official-source EU dataset so you can view the site immediately:
 
 ```bash
 cd europe/site && python -m http.server 8000

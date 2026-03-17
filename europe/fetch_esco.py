@@ -8,8 +8,8 @@ Usage:
     uv run python fetch_esco.py
 """
 
+import argparse
 import json
-import os
 import time
 import httpx
 
@@ -25,66 +25,98 @@ def get_esco(url, params=None):
             resp.raise_for_status()
             return resp.json()
         except Exception as e:
-            if attempt == 2: raise
+            if attempt == 2:
+                raise
             print(f"  Retry {attempt+1} after error: {e}")
             time.sleep(2)
 
+
+def extract_text(value):
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, dict):
+        for key in ("literal", "value", "@value", "en"):
+            text = extract_text(value.get(key))
+            if text:
+                return text
+        for nested in value.values():
+            text = extract_text(nested)
+            if text:
+                return text
+    if isinstance(value, list):
+        for item in value:
+            text = extract_text(item)
+            if text:
+                return text
+    return None
+
+
+def extract_description(payload):
+    for key in ("description", "definition", "scopeNote"):
+        text = extract_text(payload.get(key))
+        if text:
+            return text
+    return None
+
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--language", default=LANG)
+    parser.add_argument("--batch-size", type=int, default=LIMIT)
+    parser.add_argument("--max-occupations", type=int, default=None)
+    args = parser.parse_args()
+
     print("Fetching ESCO occupations (v1)...")
-    
-    # We'll start by listing occupations via the 'search' or 'root' concept
-    # Actually, the most robust way is to use the 'search' API with type='Occupation'
-    
+
     all_occupations = []
     offset = 0
-    
+
     while True:
         print(f"  Fetching batch at offset {offset}...", end=" ", flush=True)
         data = get_esco(f"{API_BASE}/resource/search", params={
             "type": "occupation",
-            "language": LANG,
-            "limit": LIMIT,
+            "language": args.language,
+            "limit": args.batch_size,
             "offset": offset
         })
-        
+
         results = data.get("_embedded", {}).get("results", [])
         if not results:
             print("Done.")
             break
-            
+
         for res in results:
-            # The search result gives us the URI, title, and code
-            # We need to fetch the full resource to get the description
             uri = res["uri"]
             title = res["title"]
-            code = res.get("code") # ISCO code
-            
-            # Fetch detail
-            # info = get_esco(f"{API_BASE}/resource/occupation", params={"uri": uri, "language": LANG})
-            # To speed this up for a demo, we'll just store the metadata first.
-            # In a real run, you'd pull the 'description' field from the detail view.
-            
+            code = res.get("code")
+            detail = get_esco(f"{API_BASE}/resource/occupation", params={
+                "uri": uri,
+                "language": args.language,
+            })
+
             all_occupations.append({
                 "title": title,
                 "uri": uri,
                 "isco_code": code,
-                "slug": uri.split("/")[-1]
+                "slug": uri.split("/")[-1],
+                "description": extract_description(detail),
             })
-            
+
+            if args.max_occupations is not None and len(all_occupations) >= args.max_occupations:
+                break
+
         print(f"OK (total: {len(all_occupations)})")
-        offset += LIMIT
-        
-        # Rate limiting break
+        offset += args.batch_size
+
         time.sleep(0.1)
-        
-        # Safety break for demo
-        if offset >= 100: 
-            print("  [DEMO] Stopping at 100 occupations. Remove limit in fetch_esco.py for production.")
+
+        if args.max_occupations is not None and len(all_occupations) >= args.max_occupations:
+            print(f"  Reached requested cap of {args.max_occupations} occupations.")
             break
 
     with open("occupations.json", "w") as f:
         json.dump(all_occupations, f, indent=2)
-    
+
     print(f"Saved {len(all_occupations)} occupations to occupations.json")
 
 if __name__ == "__main__":
